@@ -54,9 +54,9 @@ class TipSystemServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('tipcategory','tip\tipsystem\TipCategoriesController');
+        $this->app->bind('tipcategory','tip\tipsystem\TipsCategoriesController');
         $this->app->bind('tip','tip\tipsystem\TipsController');
-        $this->app->make('tip\tipsystem\TipCategoriesController');
+        $this->app->make('tip\tipsystem\TipsCategoriesController');
         $this->app->make('tip\tipsystem\TipsController');
 
     }
