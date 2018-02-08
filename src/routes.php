@@ -7,7 +7,7 @@ Route::group(['prefix' => 'api', 'as' => 'api'], function () {
     Route::group(['prefix' => 'tips', 'as' => 'tips'], function () {
      
 	Route::resource('tip','tip\tipsystem\TipsController');
-	Route::resource('tipCategory','tip\tipsystem\TipCategoriesController');
+	Route::resource('tipCategory','tip\tipsystem\TipsCategoriesController');
 
 
 

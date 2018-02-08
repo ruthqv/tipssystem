@@ -2,7 +2,7 @@
 
 namespace tip\tipsystem;
 
-use tip\tipsystem\Models\Blogcategory;
+use tip\tipsystem\Models\TipCategory;
 use DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
