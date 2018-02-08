@@ -6,7 +6,7 @@ use tip\tipsystem\Models\Tip;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TipsCategoriesController extends Controller
+class TipsController extends Controller
 {
 
     /**
