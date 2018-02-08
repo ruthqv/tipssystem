@@ -17,6 +17,7 @@ class TipCategory extends Model
         'order',
         'special',
         'menu'
+        'approved'
     ];
 
     /**

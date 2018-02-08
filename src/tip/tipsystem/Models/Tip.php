@@ -1,6 +1,4 @@
 <?php
-
-
 namespace tip\tipsystem\Models;
 
 use tip\tipsystem\Helpers\BlogSystemHelper;
@@ -14,17 +12,14 @@ class Tip extends Model
 
     protected $fillable = [
         'name',
-        'uri',
         'description',
         'user_id',
         'blogcategory_id',
         'special',
         'new',
         'order',
-        'meta_name',
-        'meta_title',
-        'meta_description',
-        'meta_keywords',
+        'approved'
+
     ];
 
 

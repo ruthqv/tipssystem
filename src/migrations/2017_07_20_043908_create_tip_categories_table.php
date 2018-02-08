@@ -21,6 +21,7 @@ class CreateTipCategoriesTable extends Migration
             $table->integer('parent_id')->unsigned()->default(0)->index('tipcategories_parent_id');
             $table->boolean('menu')->default(0);
             $table->boolean('special')->default(0);
+            $table->boolean('approved')->default(1);
 
             $table->timestamps();
             $table->softDeletes();

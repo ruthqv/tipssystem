@@ -23,6 +23,8 @@ class CreateTipsTable extends Migration
             $table->foreign('tipcategory_id')->references('id')->on('tipcategories')->onDelete('cascade');
             $table->boolean('menu')->default(1);
             $table->boolean('special')->default(1);
+            $table->boolean('approved')->default(1);
+
             $table->boolean('new')->default(0)->index('tips_new');
             $table->timestamps();
             $table->softDeletes();

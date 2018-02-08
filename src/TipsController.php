@@ -16,6 +16,7 @@ class TipsController extends Controller
      */
     public function index()
     {
+        $items = Tip::all();
         // Log::info($items);
         return $items;
     }
