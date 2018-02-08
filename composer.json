@@ -1,0 +1,33 @@
+{
+    "name": "tipsystem/tipsystem",
+    "description": "tipsystem",
+    "type": "package",
+    "version": "1.0.0",
+    "license": "MIT",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "tip\\tipsystem\\TipSystemServiceProvider"
+            ],
+            "aliases": {
+            "tip": "tip\\tipsystem\\Facade"
+             }
+          }
+    },
+    "authors": [{
+        "name": "ruthqv",
+        "email": "rqvaquero@gmail.com"
+    }],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.4",
+        "doctrine/dbal": "^2.6"
+
+
+    },
+    "autoload": {
+        "psr-4": {
+            "tip\\tipsystem\\": "src/"
+        }
+    }
+}
