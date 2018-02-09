@@ -1,5 +1,4 @@
 <?php
-
 namespace tip\tipsystem;
 
 use tip\tipsystem\Models\TipCategory;
@@ -16,6 +15,10 @@ class TipSystemServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/js' => resource_path('assets/js'),
         ], 'tip-js-components');
+
+        $this->publishes([
+            __DIR__ . '/views' => resource_path('views'),
+        ], 'tip-view-main');
 
         $this->publishes([
             __DIR__ . '/Middleware' => app_path('Http/Middleware'),
