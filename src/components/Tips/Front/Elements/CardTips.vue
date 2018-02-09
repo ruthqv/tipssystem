@@ -20,7 +20,7 @@
 import bCard from 'bootstrap-vue/es/components/card/card';
 
 	export default{
-		name: 'Posts',
+		name: 'CardTips',
 		components:{
 			bCard,
 		}

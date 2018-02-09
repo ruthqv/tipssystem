@@ -122,7 +122,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+            <h4 class="modal-title" id="myModalLabel">Edit Tip</h4>
           </div>
           <div class="modal-body">
 
@@ -166,6 +166,8 @@
 <script>
 
 var newItem = {"name": "",
+              "description": "",
+              "author": "",
               "category":"", 
               }
 

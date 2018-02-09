@@ -18,7 +18,6 @@ class CreatePhotosTable extends Migration {
 			$table->string('name',100)->index('photos_name');
 			$table->string('original_name',255)->nullable();
             $table->morphs('photostable',255); //la clave de todo
-
 			$table->boolean('default')->default(0);
 			$table->integer('order')->default(0);
 			$table->timestamps();

@@ -58,10 +58,10 @@ class TipsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Crud  $crud
+     * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Crud $crud)
+    public function update(Request $request, Tip $tip)
     {
 
 
@@ -70,10 +70,10 @@ class TipsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Crud  $crud
+     * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Crud $crud)
+    public function destroy(Crud $tip)
     {
 
 
