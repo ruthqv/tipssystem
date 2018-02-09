@@ -14,8 +14,8 @@ class TipSystemServiceProvider extends ServiceProvider
     {
         
         $this->publishes([
-            __DIR__ . '/components' => resource_path('assets/js/components'),
-        ], 'tip-components');
+            __DIR__ . '/js' => resource_path('assets/js'),
+        ], 'tip-js-components');
 
         $this->publishes([
             __DIR__ . '/Middleware' => app_path('Http/Middleware'),
