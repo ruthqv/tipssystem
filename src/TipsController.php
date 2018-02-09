@@ -16,8 +16,14 @@ class TipsController extends Controller
      */
     public function index()
     {
-        $items = Tip::all();
+        $items = Tip::approved()->get();
+
+        foreach($items as $item){
+           $item->category =  $item->tipcategory()->first();
+        }
         // Log::info($items);
+
+        print_r($items);
         return $items;
     }
 
@@ -35,7 +41,15 @@ class TipsController extends Controller
     {
         $this->validate($request, [
             'name'     => 'required',
+            'description' => 'required',
+            
         ]);
+
+        $data = $request->all();
+
+
+
+        return $data;
 
 
     }

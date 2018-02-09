@@ -44,12 +44,12 @@
 
     <hr>
   <button type="button" class="hamburger fadeInLeft is-closed btn btn-main" v-on:click="showLeftNav()" data-toggle="offcanvas">
-  CREATE ITEM
+  SEND TIP
   </button>
     <!-- Main table element -->
     <b-table class=""
              ref="table"
-    		     show-empty
+             show-empty
              stacked="md"
              :items="items"
              :fields="fields"
@@ -66,28 +66,14 @@
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
 
-	     <b-button class="btn btn-primary" @click.prevent="editItem(row.item)">Edit</b-button>
-		  <b-button class="btn btn-danger" @click.prevent="deleteItem(row.item)">Delete</b-button>
+       <b-button class="btn btn-primary" @click.prevent="editItem(row.item)">Edit</b-button>
+      <b-button class="btn btn-danger" @click.prevent="deleteItem(row.item)">Delete</b-button>
 
 
       </template>
       <template slot="row-details" slot-scope="row">
         <b-card>
-          <ul>
-      			<ul id="v-for-row.item.years">
-      			  <li  v-for="(value, key, index) in row.item.years" v-bind="value">
-      <!-- 			    {{ key }} : {{value}} : {{index}}
-       -->	
-       				<strong>{{ key }}</strong>
-       				<ul id="v-for-value">
-      			  	<li  v-for="(val, index) in value"><strong>{{index}}</strong> : {{val}}</li>
-      				</ul>
-      			  </li>
-
-      			</ul>
-
-
-          </ul>
+          Details
         </b-card>
       </template>
     </b-table>
@@ -108,97 +94,64 @@
             <b-row>
              <div class="text-center padding2">
 
-		           <h4>Create Item</h4>
-     		      		<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createItem">
+               <h4>Your Tip</h4>
+                  <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createItem">
                     <div  v-for="(item,index, value) in newItem">
-              		      <div class="form-group" v-if="index != 'years' ">
-              						<label for="index">{{index}}</label>
-              						<input type="text" name="index" class="form-control" v-model="newItem[index]" />
-              						<span v-if="formErrors['index']" class="error text-danger">@{{ formErrors['index'] }}</span>
+                        
+                        <div class="form-group">
+                          <label for="index">{{index}}</label>
+                          <input type="text" name="index" class="form-control" v-model="newItem[index]" />
+                          <span v-if="formErrors['index']" class="error text-danger">@{{ formErrors['index'] }}</span>
                           
-              					</div>
-                        <div class="form-group"  v-if="index == 'years' ">
-                            <div  v-for="(years, indexyears, value) in item">
-                             
-                              <label for="index">{{indexyears}}</label>
-
-                                  <div  v-for="(year,indexvals) in years">
-                                     
-                                      <label for="indexvals">{{indexvals}}</label>
-                                      <input type="text" name="indexvals" class="form-control" v-model="newItem.years[indexyears][indexvals]" />
-                                      <span v-if="formErrors['indexvals']" class="error text-danger">@{{ formErrors['indexvals'] }}</span>
-    
-                                  </div>
-                            </div>
                         </div>
                       </div>
-            					<div class="form-group">
-            						<button type="submit" class="btn btn-main">Submit</button>
-            					</div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-main">Submit</button>
+                      </div>
 
-      		      	</form>
+                  </form>
             </div>
-		        </b-row>
-		</nav>
+            </b-row>
+    </nav>
 <!-- endcreate -->
 
 
 <!-- edit -->
-		<div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
-		      </div>
-		      <div class="modal-body">
+    <div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+          </div>
+          <div class="modal-body">
 
 
-		      		<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem._id)">
+              <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem._id)">
+
+                    <div  v-for="(item,index, value) in newItem">
+
+                      <div class="form-group">
+                        <label for="index">{{index}}</label>
+                        <input type="text" name="index" class="form-control" v-model="newItem[index]" />
+                        <span v-if="formErrors['index']" class="error text-danger">@{{ formErrors['index'] }}</span>
+                        
+                      </div>    
+                    </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-success">Submit</button>
+              </div>
 
 
-		      			<div class="form-group">
-							<label for="name">name:</label>
-							<input type="text" name="name" class="form-control" v-model="fillItem.name" />
-							<span v-if="formErrorsUpdate['name']" class="error text-danger">@{{ formErrorsUpdate['name'] }}</span>
-						</div>
-		      			<div class="form-group">
-							<label for="industry">industry:</label>
-							<input type="text" name="industry" class="form-control" v-model="fillItem.industry" />
-							<span v-if="formErrorsUpdate['industry']" class="error text-danger">@{{ formErrorsUpdate['industry'] }}</span>
-						</div>
-
-		      			<div class="form-group"  v-for="(value, key) in fillItem.years" v-bind="value">
-					
-							  			<label for="year">{{key}}</label>
-
-						      			<div class="form-group"  v-for="(va, ind) in value">
-
-												<p><strong>{{ind}}</strong><input  type="text" name="fillItem.years[key][ind]" class="form-control" v-model="fillItem.years[key][ind]"/></p>
+              </form>
 
 
+          </div>
+        </div>
+      </div>
 
-											<span v-if="formErrorsUpdate['years']" class="error text-danger">@{{ formErrorsUpdate['years'] }}</span>
-										</div>
-
-							<span v-if="formErrorsUpdate['years']" class="error text-danger">@{{ formErrorsUpdate['years'] }}</span>
-						</div>
-						
-
-
-    					<div class="form-group">
-    						<button type="submit" class="btn btn-success">Submit</button>
-    					</div>
-
-
-		      		</form>
-
-
-		      </div>
-		    </div>
-		  </div>
-
-		</div>
+    </div>
 
 
   <!-- end edit -->
@@ -213,7 +166,7 @@
 <script>
 
 var newItem = {"name": "",
-              "Category":"", 
+              "category":"", 
               }
 
 const items = [newItem]
@@ -231,10 +184,12 @@ export default {
       newItem :   newItem,
 
       formErrors:{},
-   	  formErrorsUpdate:{},
+      formErrorsUpdate:{},
       fields: [
         { key: 'name', label: 'name', sortable: true },
-        { key: 'Category', label: 'Category', sortable: true  },
+        { key: 'description', label: 'description', sortable: true },        
+        { key: 'author', label: 'author', sortable: true },
+        { key: 'category', label: 'Category', sortable: true  },
         { key: 'actions', label: 'Actions', sortable: false   }
       ],
       currentPage: 1,
@@ -278,17 +233,17 @@ export default {
       this.currentPage = 1
     },
 
-	 editItem: function(item){
-	 	  this.fillItem._id = item._id;
-	 	  this.fillItem.name = item.name;
+   editItem: function(item){
+      this.fillItem._id = item._id;
+      this.fillItem.name = item.name;
           this.fillItem.industry = item.industry;
           this.fillItem.years = item.years;
 
-	      $("#edit-item").modal('show');
-	  },
+        $("#edit-item").modal('show');
+    },
 
     getItems: function(){
-        this.$http.get('api/tip/posts').then(function (response) {
+        this.$http.get('api/tips/tip').then(function (response) {
         this.items = response.data;
         console.log(this.items);
         })
@@ -301,22 +256,22 @@ export default {
       updateItem: function(item){
         var input = this.fillItem;
 
-       	console.log(this.fillItem.newyear)
-        this.$http.put('api/crud/'+ item.$oid, input).then((response) => {
-        	this.items= response.data
-        	// console.log(response)
+        console.log(this.fillItem.newyear)
+        this.$http.put('api/tips/tip'+ item.$oid, input).then((response) => {
+          this.items= response.data
+          // console.log(response)
           $("#edit-item").modal('hide');
 
-   			 this.$refs.table.refresh();
+         this.$refs.table.refresh();
 
           }, (response) => {
               this.formErrorsUpdate = response.data;
           });
       },
       deleteItem: function(item){
-      	console.log(item._id)
-        this.$http.delete('api/crud/'+item._id.$oid).then((response) => {
-        	this.items= response.data
+        console.log(item._id)
+        this.$http.delete('api/tips/tip'+item._id.$oid).then((response) => {
+          this.items= response.data
 
         });
       },
@@ -325,14 +280,14 @@ export default {
 
           var input = this.newItem;
           console.log(this.newItem)
-    		  this.$http.post('api/crud',input).then((response) => {
+          this.$http.post('api/tips/tip',input).then((response) => {
           this.items= response.data
           this.hideLeftNav()
           this.$refs.table.refresh();
-    		  }, (response) => {
-    			this.formErrors = response.data;
-    	    });
-	     },
+          }, (response) => {
+          this.formErrors = response.data;
+          });
+       },
 
        showLeftNav:function(){
         $('#wrapper').toggleClass('toggled');
@@ -349,7 +304,7 @@ export default {
 
   },
   components:{
-	'b-input-group-button': bInputGroup
+  'b-input-group-button': bInputGroup
   }
 }
 

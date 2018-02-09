@@ -6,20 +6,20 @@
 			<SideBar></SideBar>
 		</div>
 		<div class="col-sm-9">
-			<CardTips></CardTips>
+			<Posts></Posts>
 		</div>
 	</div>
 </template>
 <script>
-import CardTips from './CardTips.vue'	
+import Posts from './Posts.vue'	
 import SideBar from './SideBar.vue'	
 
 export default {
-  name: 'Tips',	
+  name: 'Blog',	
 
   components:{
   	SideBar,
-  	CardTips,
+  	Posts,
   }
 
 }

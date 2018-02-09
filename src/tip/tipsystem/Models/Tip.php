@@ -14,7 +14,7 @@ class Tip extends Model
         'name',
         'description',
         'user_id',
-        'blogcategory_id',
+        'tipcategory_id',
         'special',
         'new',
         'order',
@@ -32,6 +32,11 @@ class Tip extends Model
         return $tipcategory->tips()->where('id', '!=', $id)->get();
 
     }
+
+    public static function approved()
+    {
+        return self::where('approved','=', 1);
+    } 
 
     public function author()
     {
