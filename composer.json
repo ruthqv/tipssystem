@@ -2,7 +2,7 @@
     "name": "tipsystem/tipsystem",
     "description": "tipsystem",
     "type": "package",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "extra": {
         "laravel": {
