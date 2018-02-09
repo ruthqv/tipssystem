@@ -17,7 +17,6 @@ class CreateTipCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name', 100)->index('tipcategories_name');
             $table->text('description')->nullable();
-            $table->string('uri', 50)->unique();
             $table->integer('parent_id')->unsigned()->default(0)->index('tipcategories_parent_id');
             $table->boolean('menu')->default(0);
             $table->boolean('special')->default(0);

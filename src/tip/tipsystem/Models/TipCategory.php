@@ -42,7 +42,7 @@ class TipCategory extends Model
     }
 
 
-    public function posts() {
+    public function tips() {
         
         return $this->hasMany('tip\tipsystem\Models\Post','tipcategory_id', 'id');
     }
@@ -58,19 +58,19 @@ class TipCategory extends Model
     }
 
 
-    public static function allPosts($tipcategory, $posts = null) {
-        if ($posts === null) {
-            $posts = collect();
+    public static function allPosts($tipcategory, $tips = null) {
+        if ($tips === null) {
+            $tips = collect();
         }
 
-        $posts = $posts->merge($tipcategory->posts);
+        $tips = $tips->merge($tipcategory->tips);
 
-        $tipcategory->children->each(function($child) use(&$posts) {
-            $posts = self::allPosts($child, $posts);
+        $tipcategory->children->each(function($child) use(&$tips) {
+            $tips = self::allPosts($child, $tips);
         });
 
-        $posts = $posts->sortBy('order');
+        $tips = $tips->sortBy('order');
 
-        return $posts;
+        return $tips;
     }
 }

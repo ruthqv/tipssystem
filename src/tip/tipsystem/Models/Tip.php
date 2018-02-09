@@ -23,13 +23,13 @@ class Tip extends Model
     ];
 
 
-    public function relatedposts($id)
+    public function relatedtips($id)
     {
         $post = $id;
 
         $tipcategory = $this->tipcategory()->first();
 
-        return $tipcategory->posts()->where('id', '!=', $id)->get();
+        return $tipcategory->tips()->where('id', '!=', $id)->get();
 
     }
 

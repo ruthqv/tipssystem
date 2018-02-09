@@ -1,5 +1,5 @@
 <template>
-	<div> <h1>Posts</h1>
+	<div> <h1>CardTips</h1>
 
 		  <b-card title="Card Title"
 		          img-src="https://lorempixel.com/600/300/food/5/"
@@ -20,7 +20,7 @@
 import bCard from 'bootstrap-vue/es/components/card/card';
 
 	export default{
-		name: 'Posts',
+		name: 'CardTips',
 		components:{
 			bCard,
 		}
