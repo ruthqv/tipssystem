@@ -16,7 +16,7 @@ class TipCategory extends Model
         'parent_id',
         'order',
         'special',
-        'menu'
+        'menu',
         'approved'
     ];
 
