@@ -27,5 +27,24 @@
         "psr-4": {
             "tip\\tipsystem\\": "src/"
         }
-    }
+    },
+  "devDependencies": {
+        "axios": "^0.17",
+        "bootstrap-sass": "^3.3.7",
+        "font-awesome": "*",
+        "cross-env": "^5.1",
+        "jquery": "^3.2",
+        "laravel-mix": "^2.0",
+        "lodash": "^4.17.4",
+        "popper.js": "^1.12",
+        "vue": "^2.5.7"
+  },
+  "dependencies": {
+        "bootstrap-vue": "^2.0.0-rc.1",
+        "vue-resource": "^1.3.5",
+        "vue-router": "^3.0.1"
+  }
+
+
+    
 }

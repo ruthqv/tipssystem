@@ -9,6 +9,7 @@ use Schema;
 use langs\langssystem\Models\Lang;
 class Tip extends Model
 {
+    protected $connection = 'mongodb';
 
     protected $fillable = [
         'name',

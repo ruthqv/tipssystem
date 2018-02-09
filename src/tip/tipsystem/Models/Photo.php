@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
 
+    protected $connection = 'mongodb';
 
     protected $fillable = [
         'name',

@@ -13,18 +13,29 @@ class CreateTipCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipcategories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 100)->index('tipcategories_name');
-            $table->text('description')->nullable();
-            $table->integer('parent_id')->unsigned()->default(0)->index('tipcategories_parent_id');
-            $table->boolean('menu')->default(0);
-            $table->boolean('special')->default(0);
-            $table->boolean('approved')->default(1);
-
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::connection('mongodb')->create('tipcategories', function($collection)
+         {
+            $collection->index('name');
+            $collection->index('description');
+            $collection->index('author');
+            $collection->index('approved');
+            $collection->index('link');
+            $collection->index('parent_id');
+            $collection->timestamps();
+            $collection->softDeletes();
         });
+        //  Schema::create('tipcategories', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('name', 100)->index('tipcategories_name');
+        //     $table->text('description')->nullable();
+        //     $table->integer('parent_id')->unsigned()->default(0)->index('tipcategories_parent_id');
+        //     $table->boolean('menu')->default(0);
+        //     $table->boolean('special')->default(0);
+        //     $table->boolean('approved')->default(1);
+
+        //     $table->timestamps();
+        //     $table->softDeletes();
+        // });       
     }
 
     /**
@@ -34,7 +45,10 @@ class CreateTipCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipcategories');
+        Schema::connection('mongodb')->drop('tipcategories');
+        // Schema::drop('tipcategories');
+
     }
+
 
 }

@@ -8,6 +8,8 @@ use tip\tipsystem\Helpers\TipSystemHelper;
 
 class TipCategory extends Model
 {
+    protected $connection = 'mongodb';
+
     protected $table = 'tipcategories';
     protected $fillable = [
         'name',

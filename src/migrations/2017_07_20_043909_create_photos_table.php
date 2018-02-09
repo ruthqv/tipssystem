@@ -12,17 +12,29 @@ class CreatePhotosTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('photos', function(Blueprint $table)
+
+		Schema::connection('mongodb')->create('photos', function($collection)
 		{
-			$table->integer('id', true);
-			$table->string('name',100)->index('photos_name');
-			$table->string('original_name',255)->nullable();
-            $table->morphs('photostable',255); //la clave de todo
-			$table->boolean('default')->default(0);
-			$table->integer('order')->default(0);
-			$table->timestamps();
-			$table->softDeletes();
+
+            $collection->index('name');
+            $collection->index('description');
+            $collection->index('tip_id');
+            $collection->timestamps();
+            $collection->softDeletes();
+
 		});
+
+		// Schema::create('photos', function(Blueprint $table)
+		// {
+		// 	$table->integer('id', true);
+		// 	$table->string('name',100)->index('photos_name');
+		// 	$table->string('original_name',255)->nullable();
+  		// $table->morphs('photostable',255); //la clave de todo
+		// 	$table->boolean('default')->default(0);
+		// 	$table->integer('order')->default(0);
+		// 	$table->timestamps();
+		// 	$table->softDeletes();
+		// });
 	}
 
 
@@ -33,7 +45,8 @@ class CreatePhotosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('photos');
+        Schema::connection('mongodb')->drop('photos');
+        // Schema::drop('photos');
 	}
 
 }
