@@ -8,7 +8,8 @@
 require('./bootstrap');
 window.Vue = require('vue');
 var VueResource = require('vue-resource');
-
+var SocialSharing = require('vue-social-sharing');
+Vue.use(SocialSharing);
 
 import BootstrapVue from 'bootstrap-vue'
 import router from './router'

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from '../views/App.vue'
-import Blog from '../components/Blog/Front/Blog.vue'
-import Home from '../components/Home/Home.vue'
+import Home from '../views/Home.vue'
+import Tip from '../views/Tip.vue'
 
 Vue.use(VueRouter)
 export default new VueRouter({
@@ -14,16 +14,14 @@ export default new VueRouter({
             component: Home
         },
         {
-            path: '/blog',
-            name: 'blog',
-            component: Blog
+            path: '/tip/:id',
+            name: 'singletip',
+            component: Tip,
+            props: true 
         },
 
-        {
-            path: '/admin',
-            name: 'admin',
-            component: Home
-        },
+
+
 
     ],
 });

@@ -4,15 +4,14 @@
 
 Route::group(['prefix' => 'api', 'as' => 'api'], function () {
     Route::group(['prefix' => 'tips', 'as' => 'tips'], function () {
+    
     Route::resource('tip','tip\tipsystem\TipsController');
-	Route::resource('tipCategory','tip\tipsystem\TipsCategoriesController');
+
+
+	Route::post('searchcategory/{category?}','tip\tipsystem\TipsController@search');
+
     });
 
 });
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth','role:admin']], function () {
-        Route::get('/', function () {
-             return view('main');
-        });
- });

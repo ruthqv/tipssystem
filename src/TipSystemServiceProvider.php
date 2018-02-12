@@ -37,29 +37,14 @@ class TipSystemServiceProvider extends ServiceProvider
         }
 
 
-        if ((DB::connection()->getDatabaseName()) && (Schema::hasTable('tipcategories'))) {
-
-            $tipcategories['all'] = TipCategory::all();
-
-            app()->global = [
-
-                'tipcategories' => $tipcategories,
-
-            ];
-
-            // Also share $tipcategories
-            view()->share(compact('tipcategories'));
-
-        }
 
     }
 
 
     public function register()
     {
-        $this->app->bind('tipcategory','tip\tipsystem\TipsCategoriesController');
         $this->app->bind('tip','tip\tipsystem\TipsController');
-        $this->app->make('tip\tipsystem\TipsCategoriesController');
+
         $this->app->make('tip\tipsystem\TipsController');
 
     }

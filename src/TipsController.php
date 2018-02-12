@@ -3,6 +3,8 @@
 namespace tip\tipsystem;
 
 use tip\tipsystem\Models\Tip;
+
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,16 +20,47 @@ class TipsController extends Controller
     {
         $items = Tip::approved()->get();
 
-        foreach($items as $item){
-           $item->category =  $item->tipcategory()->first();
-        }
         // Log::info($items);
-
-        print_r($items);
-        return $items;
+        return ['items' => $items ];
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($tip)
+    {
+        $item = Tip::find($tip);
 
+        // Log::info($items);
+        return ['item' => $item ];
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request, $category)
+    {        
+
+
+
+        $result= Tip::where('category', 'like', '%'.$category.'%')->get();
+
+        if(!empty($result)){
+            $arraycategories=[];
+            foreach($result as $res){
+                $arraycategories[] = $res['category'];
+
+            }
+
+            return response()->json($arraycategories);
+
+        }
+
+    }
 
 
 
@@ -40,16 +73,28 @@ class TipsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'     => 'required',
-            'description' => 'required',
+            'question'     => 'required',
+            'solution' => 'required',
             
         ]);
 
         $data = $request->all();
+        
+        $data['approved'] = 1;
 
 
+        $tip = new Tip;
+        
+        $tip->setConnection('mongodb');
+        
+        $tip = Tip::create($data);
 
-        return $data;
+
+        $items = Tip::approved()->get();
+
+
+        // Log::info($items);
+        return ['items' => $items ];
 
 
     }
@@ -61,8 +106,16 @@ class TipsController extends Controller
      * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tip $tip)
+    public function update(Request $request, $tip)
     {
+        $tip = Tip::find($tip);
+        $tip->update($request->all());
+        $items = Tip::approved()->get();
+
+        // Log::info($items);
+
+        return ['items' => $items ];
+
 
 
     }
@@ -73,8 +126,17 @@ class TipsController extends Controller
      * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Crud $tip)
+    public function destroy($tip)
     {
+        
+        $tips = Tip::find($tip);
+        $tips->delete();
+
+        $items = Tip::approved()->get();
+
+        // Log::info($items);
+
+        return ['items' => $items ];
 
 
     }
