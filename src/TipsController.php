@@ -56,7 +56,7 @@ class TipsController extends Controller
 
             }
 
-            return response()->json($arraycategories);
+            return response()->json(array_unique($arraycategories));
 
         }
 

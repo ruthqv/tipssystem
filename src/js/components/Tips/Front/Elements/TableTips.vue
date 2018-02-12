@@ -25,10 +25,10 @@
     
       <template slot="row-details" slot-scope="row">
         <b-card>
-          <div class="container">
+          <div class="container text-center">
           <h2>{{row.item.question}}</h2>
           <hr>
-          <p>{{row.item.solution}}</p>
+          <p >{{row.item.solution}}</p>
            <small>{{row.item.category}}</small>
            <small>{{row.item.resource}}</small>            
           </div>

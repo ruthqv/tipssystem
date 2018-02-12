@@ -10,20 +10,18 @@
                     <div class="card-block">
                         <h4 class="card-title">{{row.question}}</h4>
                         <div class="meta">
-      						 <router-link :to="{ name: 'singletip' , params: { id : row._id } }">See more</router-link>
                         </div>
                         <div class="card-text">
-
-						    	Solution:
-								{{row.solution}}
+						<p v-html="row.solution"></p>
+						    
 
                         </div>
                     </div>
                     <div class="card-footer">
-                        <span class="float-right">Category: {{row.category}}</span>
-                        {{makeroute(row._id)}}
-
+                        <span class="float-right" v-if="row.category">Category: {{row.category}}</span>
+						<br>
                         <span><i class=""></i>
+      						 <router-link :to="{ name: 'singletip' , params: { id : row._id } }">See more</router-link>
 
 					</span>
                     </div>

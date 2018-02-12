@@ -21,8 +21,11 @@
 	                        <form enctype="multipart/form-data" method="POST" v-on:submit.prevent="createItem">
 	                            <div class="form-group col-sm-12" v-for="(item,index, value) in newItem">
 	                                <input :placeholder="index" class="form-control" name="index" type="text" v-if="index !=='category' && index !=='solution' " v-model="newItem[index]"/>
-	                                <textarea :placeholder="index" class="form-control" cols="100" id="textareatip" name="index" rows="2" type="text" v-if="index =='solution' " v-model="newItem[index]">
-	                                </textarea>
+	                               
+	                                <Checkditor  v-model="newItem[index]" v-if="index =='solution' ">
+	                                </Checkditor>
+
+
 
 								<div v-if="index =='category'">
 								    <input class="form-control" name="index" placeholder="Category" type="text" v-model="categoryselected" v-on:keyup="searchCategory(categoryselected)"/>
@@ -53,6 +56,8 @@
 </div>
 <!-- endcreate -->
 <script>
+
+	import Checkditor from './Checkditor.vue'
     export default{
 		name :'CreateTip',
 		props:['newItem'],
@@ -76,15 +81,17 @@
 			}
 		},
 		methods:{
-			createItem: function(){ 
 
+
+			createItem: function(){ 
+			  this.formErrors = ''
               var input = this.newItem;
               console.log(this.newItem)
               this.$http.post('api/tips/tip',input).then((response) => {
               this.$parent.items= response.data.items
 
     		  this.$root.$emit('refresh');
-
+    		  this.fillItem = ''
               }, (response) => {
                console.log('error createItem')
               this.formErrors = response.data;
@@ -96,7 +103,7 @@
 
 	          this.$http.post('api/tips/searchcategory/'+ category).then((response) => {
 
-	          // if(response.data != ''){
+	          if(response.data != ''){
 	            $('#categoryselector').show();
 	            this.availablesCategories = response.data
 
@@ -105,13 +112,13 @@
 	            // this.categoryselected =response.data[0].name
 	            // this.newItem.category = this.categoryselected         
 
-	          // }else{
-	          //   // this.categoryselected = category
-	          //   this.newItem.category = category         
-	          //     // console.log(this.categoryselected)
+	          }else{
+	            // this.categoryselected = category
+	            this.newItem.category = category         
+	              // console.log(this.categoryselected)
 
 
-	          //   }
+	            }
 	          }, (response) => {
 	          console.log('error searchcategory')
 	          this.formErrors = response.data;
@@ -131,6 +138,10 @@
 	        if(this.togglemessage == 'X'){this.togglemessage = 'SEND TIP'}else{this.togglemessage = 'X'};
 	      },
 
+		},
+
+		components:{
+			Checkditor
 		}
 	}
 </script>
