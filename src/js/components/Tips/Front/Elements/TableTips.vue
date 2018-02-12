@@ -16,11 +16,11 @@
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
 
-<!--         <div v-if="currentUser   && currentUser.type == 'admin'"> -->
+        <div v-if="currentUser   && currentUser.type == 'admin'">
         <b-button class="btn btn-primary" @click.prevent="editItem(row.item)">Edit</b-button>
          <b-button class="btn btn-danger" @click.prevent="deleteItem(row.item)">Delete</b-button>          
-<!--         </div>
-        <div v-else></div> -->
+        </div>
+        <div v-else></div>
      </template>
     
       <template slot="row-details" slot-scope="row">
@@ -28,7 +28,7 @@
           <div class="container text-center">
           <h2>{{row.item.question}}</h2>
           <hr>
-          <p >{{row.item.solution}}</p>
+          <p v-html="row.item.solution"></p>
            <small>{{row.item.category}}</small>
            <small>{{row.item.resource}}</small>            
           </div>

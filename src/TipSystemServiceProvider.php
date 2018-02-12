@@ -28,7 +28,9 @@ class TipSystemServiceProvider extends ServiceProvider
             __DIR__ . '/migrations' => database_path('migrations'),
         ], 'tip-migrations');
 
-
+        $this->publishes([
+            __DIR__ . '/css' => public_path('css'),
+        ], 'tip-css');
         
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
