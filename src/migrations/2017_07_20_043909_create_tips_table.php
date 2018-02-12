@@ -16,35 +16,21 @@ class CreateTipsTable extends Migration
 
         Schema::connection('mongodb')->create('tips', function($collection)
         {
-            $collection->index('name');
-            $collection->index('description');
-            $collection->index('author');
-            $collection->index('approved');
-            $collection->index('link');
-            $collection->index('tipcategory_id');
+            $collection->index('question');
+            $collection->index('category');
+            $collection->ensureIndex("solution","text");
+            $collection->index('approved')->default(0);
+            $collection->index('resource')->nullable();
+            $collection->index('email')->nullable();
+            $collection->index('username')->nullable();
+            $collection->index('user_id')->nullable();
+
             $collection->timestamps();
             $collection->softDeletes();
         });
 
 
-    
-        
-        // Schema::create('tips', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->string('name',100)->index('tips_name');
-        //     $table->integer('user_id')->unsigned()->nullable();
-        //     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        //     $table->text('description');
-        //     $table->integer('tipcategory_id')->unsigned()->nullable();
-        //     $table->foreign('tipcategory_id')->references('id')->on('tipcategories')->onDelete('cascade');
-        //     $table->boolean('menu')->default(1);
-        //     $table->boolean('special')->default(1);
-        //     $table->boolean('approved')->default(1);
 
-        //     $table->boolean('new')->default(0)->index('tips_new');
-        //     $table->timestamps();
-        //     $table->softDeletes();
-        // });
     }
 
     /**
